@@ -3,9 +3,7 @@ MAINTAINER CryptoPlay <docker@cryptoplay.tk>
 
 ENV NGINX_VERSION 1.13.0
 
-RUN echo 'http://dl-4.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories \
-    && apk update \
-    && GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
+RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 	&& CONFIG="\
 		--prefix=/etc/nginx \
 		--sbin-path=/usr/sbin/nginx \
@@ -53,6 +51,8 @@ RUN echo 'http://dl-4.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositor
 	" \
 	&& addgroup -S nginx \
 	&& adduser -D -S -h /var/cache/nginx -s /sbin/nologin -G nginx nginx \
+	&& echo 'http://dl-4.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories \
+        && apk update \
 	&& apk add --no-cache --virtual .build-deps \
 		gcc \
 		libc-dev \
