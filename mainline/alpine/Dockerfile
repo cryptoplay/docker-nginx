@@ -1,6 +1,5 @@
-FROM alpine:3.5
-
-MAINTAINER NGINX Docker Maintainers "docker-maint@nginx.com"
+FROM cryptoplay/alpine:3.6
+MAINTAINER CryptoPlay <docker@cryptoplay.tk>
 
 ENV NGINX_VERSION 1.13.0
 
